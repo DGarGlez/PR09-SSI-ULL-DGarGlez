@@ -25,14 +25,14 @@ int euclidesExtendido(int a, int b, int &x, int &y) {
     if (b == 0) {   // Caso base
         x = 1;          // Inicializar x e y
         y = 0;          // Inicializar x e y
-        return a;       // Retornar el GCD
+        return a;       // Retornar el GCD (Greatest Common Divisor) [Divisor Común Máximo]
     }
     // Llamada recursiva
     int x1, y1;     // Inicializar x1 e y1
-    int gcd = euclidesExtendido(b, a % b, x1, y1);  // Calcular GCD
+    int gcd = euclidesExtendido(b, a % b, x1, y1);  // Calcular GCD (Greatest Common Divisor) [Divisor Común Máximo]
     x = y1;                 // Actualizar x e y
     y = x1 - (a / b) * y1;  // Actualizar x e y
-    return gcd;      // Retornar el GCD
+    return gcd;      // Retornar el GCD (Greatest Common Divisor) [Divisor Común Máximo]
 }
 
 // Algoritmo de exponenciación rápida (Sin desbordamientos debido al uso de long long int)
@@ -54,7 +54,9 @@ vector<long long int> textoABloques(const string &texto, long long int j) {
     vector<long long int> bloques;
     string alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     string textoProcesado = texto;
-    replace(textoProcesado.begin(), textoProcesado.end(), ' ', 'X'); // Reemplazar espacios por X
+    // Convertir a mayúsculas y eliminar espacios
+    transform(textoProcesado.begin(), textoProcesado.end(), textoProcesado.begin(), ::toupper);
+    textoProcesado.erase(remove_if(textoProcesado.begin(), textoProcesado.end(), ::isspace), textoProcesado.end());
 
     // Añadir X al final si el bloque no es del tamaño adecuado
     while (textoProcesado.size() % j != 0) {
